@@ -1,0 +1,17 @@
+\section{Problem 3: Maximum Likelihood Estimation (MLE)}
+
+	\begin{align*}
+		p(x | \theta_{0}) = \begin{cases}
+			e^{- \sum_{i=1}^{n} (x_{i} - \theta_{0})}, & x \geq \theta_{0} \\
+			0, & \text{otherwise}
+		\end{cases} 
+	\end{align*}
+	\begin{align*}
+		L(\theta) & = \prod_{i=1}^{n} p(x | \theta) \ \forall x \geq \theta = \prod_{i=1}^{n} e^{- \sum_{i=1}^{n} (x_{i} - \theta)} \\
+		\log{L(\theta)} & = \sum_{i=1}^{n} \log{e^{- \sum_{i=1}^{n} (x_{i} - \theta)}} = -\sum_{i=1}^{n} x_{i} + n\theta
+	\end{align*}
+	Hence,
+	\begin{align*}
+		\text{arg}\max_{\theta} = \text{arg}\max_{\theta} \{ N\theta - \sum^{N}X \} \ s.t. \ \theta \leq X \\
+		= \min{\{ X \} } = \boxed{\min \{ x_{i} \} \ \forall i \in \{ 1 \cdots n \}}
+	\end{align*}
