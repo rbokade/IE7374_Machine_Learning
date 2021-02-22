@@ -46,6 +46,7 @@ class MLR_GradientDescent(MultiLinearRegression):
 
 if __name__ == "__main__":
 
+    # Testing
     from data_loader import DataLoader
     # Load data
     data_dir = "datasets/yachtData.csv"

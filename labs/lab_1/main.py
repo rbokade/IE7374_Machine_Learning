@@ -40,12 +40,12 @@ def train(configs, save_results=True):
         results[dataset]["mlr_gd"]["coefficients"] = mlr_gd.fit(
                 norm_train.iloc[:, :-1], norm_train.iloc[:, -1]
         ).tolist()
-        results[dataset]["mlr_gd"]["train_rmse"] = mlr_normal.evaluate(
+        results[dataset]["mlr_gd"]["train_rmse"] = mlr_gd.evaluate(
                 norm_train.iloc[:, :-1], norm_train.iloc[:, -1]
         )
         #       Performance on testing set
         norm_test, _, _ = loader.normalize_data(test, means, stds)
-        results[dataset]["mlr_gd"]["test_rmse"] = mlr_normal.evaluate(
+        results[dataset]["mlr_gd"]["test_rmse"] = mlr_gd.evaluate(
                 norm_test.iloc[:, :-1], norm_test.iloc[:, -1]
         )
     if save_results:
@@ -91,12 +91,12 @@ def try_out_all_tolerances(configs, save_results=True):
             results[dataset]["mlr_gd"][tolerance_key]["coefficients"] = mlr_gd.fit(
                     norm_train.iloc[:, :-1], norm_train.iloc[:, -1]
             ).tolist()
-            results[dataset]["mlr_gd"][tolerance_key]["train_rmse"] = mlr_normal.evaluate(
+            results[dataset]["mlr_gd"][tolerance_key]["train_rmse"] = mlr_gd.evaluate(
                     norm_train.iloc[:, :-1], norm_train.iloc[:, -1]
             )
             #       Performance on testing set
             norm_test, _, _ = loader.normalize_data(test, means, stds)
-            results[dataset]["mlr_gd"][tolerance_key]["test_rmse"] = mlr_normal.evaluate(
+            results[dataset]["mlr_gd"][tolerance_key]["test_rmse"] = mlr_gd.evaluate(
                     norm_test.iloc[:, :-1], norm_test.iloc[:, -1]
             )
     if save_results:
@@ -110,17 +110,17 @@ if __name__ == "__main__":
     datasets = ["yachtData", "concreteData", "housing"]
     configs = {dataset: {} for dataset in datasets}
 
+    configs["housing"]["data_dir"] = os.path.abspath("datasets/housing.csv")
+    configs["housing"]["learning_rates"] = [4e-4]
+    configs["housing"]["tolerances"] = [5e-3, 0.1, 0.01, 0.05, 5e-10]
+
     configs["yachtData"]["data_dir"] = os.path.abspath("datasets/yachtData.csv")
-    configs["yachtData"]["learning_rates"] = [4e-4]
-    configs["yachtData"]["tolerances"] = [5e-3, 0.1, 0.01, 0.05]
+    configs["yachtData"]["learning_rates"] = [1e-3]
+    configs["yachtData"]["tolerances"] = [1e-3, 0.1, 0.01, 0.05, 5e-10]
 
     configs["concreteData"]["data_dir"] = os.path.abspath("datasets/concreteData.csv")
-    configs["concreteData"]["learning_rates"] = [1e-3, 0.1, 0.01, 0.05]
-    configs["concreteData"]["tolerances"] = [1e-3, 0.1, 0.01, 0.05]
-
-    configs["housing"]["data_dir"] = os.path.abspath("datasets/housing.csv")
-    configs["housing"]["learning_rates"] = [7e-4]
-    configs["housing"]["tolerances"] = [1e-4, 0.1, 0.01, 0.05]
+    configs["concreteData"]["learning_rates"] = [7e-4]
+    configs["concreteData"]["tolerances"] = [1e-4, 0.1, 0.01, 0.05, 5e-10]
 
     train(configs)
     try_out_all_tolerances(configs)

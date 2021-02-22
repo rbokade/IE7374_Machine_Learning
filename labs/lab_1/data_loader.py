@@ -46,9 +46,9 @@ class DataLoader:
 
 if __name__ == "__main__":
 
+    # Testing
     data_dir = "datasets/yachtData.csv"
     loader = DataLoader(data_dir)
     loader.load_data()
     train, val, test = loader.split_dataset_into_train_val_test()
     norm_train, means, stds = loader.normalize_data(train)
-    import pdb; pdb.set_trace()
