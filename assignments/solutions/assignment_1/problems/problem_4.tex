@@ -1,0 +1,40 @@
+\section{Problem 4: Maximum Likelihood Estimation (MLE)}
+
+	$X$ is a Bernoulli random variable with probability distribution
+	\begin{enumerate}
+		\item 
+			\begin{align*}
+				f(x; p) = \begin{cases}
+					p^{x} (1 - p)^{1 - x}, & \text{if} \ x = \{ 0, 1 \} \\
+					0, & \text{otherwise}
+				\end{cases}
+			\end{align*}
+			And the likelihood function can be written as 
+			\begin{align*}
+				L(p) & = \prod_{i=1}^{n} f(x; p) \\
+				\log L(p) & = \log \sum_{i=1}^{n} f(x; p) = \log \sum_{i=1}^{n} p^{x} (1 - p)^{1 - x} = \log p \sum_{i=1}^{n} x \log (1 - p) \sum_{i=1} (1 - x) \\
+				\frac{\partial \ell(p)}{\partial p} & = \frac{\sum_{i=1}^{n} x}{p} - \frac{\sum_{i=1} (1 - x)}{\log (1 - p)} \overset{\text{set}}{=} 0 \\
+				\sum_{i=1}^{n} x_{i} & - p\sum_{i=1}^{n} x_{i} = p \sum_{i=1}^{n} (1 - x) \\
+				& \boxed{p = \frac{1}{n} \sum_{i=1}^{n} x_{i}}
+			\end{align*}
+	
+		\item
+			\begin{align*}
+				\mathbb{E}[\hat{p}] = \mathbb{E}[\frac{1}{n} \sum_{i=1}^{n} x_{i}] = \frac{1}{n} \left( \mathbb{E}[x_{i}] \right) =  \frac{1}{n} np = p	
+			\end{align*}
+			Therefore, $\hat{p}$ is an unbiased estimator of $p$
+		
+		\item 
+			Expected square error of $\hat{p}$ in terms of $p$ can be written as 
+			\begin{align*}
+				\mathbb{E}[ (p - L(p))^{2} ] & = \mathbb{E}[ (p - \hat{p})^{2} ] = \mathbb{E}[ p^{2} - 2p\hat{p} + \hat{p}^{2} ] = \mathbb{E}[ p^{2} ] - \mathbb{E}[ 2p\hat{p} ] + \mathbb{E}[ \hat{p}^{2} ] \\
+				& = p^{2} - \frac{2p}{n} \sum_{i=1}^{n} \mathbb{E}[x_{i=1}^{n}] + \frac{1}{n} \sum_{i=1}^{n} \mathbb{E} [x_{i=1}^{n}] \\
+				& = p^{2} - \frac{2np^{2}}{n} + \frac{np}{n^{2}} ((n - 1) p + 1) \\
+				& = p^{2} - 2p^{2} - \frac{p^{2}}{n} + \frac{p}{n} + p^{2} \\
+				& \boxed{\text{MSE}(\hat{p}) = \frac{p(1 - p)}{n}}
+			\end{align*}
+		
+		\item
+			We know that $p \in \{ \frac{1}{4}, \frac{3}{4} \}$ and $n = 3$. $R(\theta, \delta) = \frac{p(1 - p)}{n}$. For $p \in \{ \frac{1}{4}, \frac{1}{2}, \frac{3}{4} \}$, we have the following values for $R(\theta, \delta) = \{ 0.0625, 0.0833, 0.0625 \}$. $\hat{p}$ would be an inadmissible estimator of $p$ if there exists an $R(\theta, \delta)$ that gives a better estimate of $MSE$. Intuitively, the best estimator of $p$ would have $MSE = 0$ (lowest uncertainty). Hence, in this case, $\hat{p}$ would be an inadmissible estimator for $p$.
+			
+	\end{enumerate}

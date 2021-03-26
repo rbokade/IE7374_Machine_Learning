@@ -1,0 +1,19 @@
+\section{Problem 2: Legal reasoning}
+	
+	\begin{enumerate}
+	
+		\item 
+			Let \texttt{crime\_blood\_type} represent that the blood type is the one that was found at the scene of crime and \texttt{guilty} represent that the defendant is guilty. Probability that anyone has the blood type is $p(\texttt{crime\_blood\_type}) = 0.1$ and therefore probability that the defendant has the blood type \texttt{crime\_blood\_type} is 0.1. 
+			\par
+			However, there is no evidence provided to assess the dependence between \texttt{blood\_type} and \texttt{guilty}. Therefore, it would be safe and unbiased to assume that $p(\texttt{guilty} | \texttt{crime\_blood\_type}) = p(\texttt{innocent} | \texttt{crime\_blood\_type}) = 0.5$ and $p(\texttt{guilty}) = p(\texttt{innocent}) = 0.5$.		
+			\par
+			Thus, \\
+			$p(\texttt{crime\_blood\_type} | \texttt{innocent}) = \frac{p(\texttt{innocent} | \texttt{crime\_blood\_type})p(\texttt{crime\_blood\_type})}{p(\texttt{innocent})} =  \frac{0.5 \cdot 0.1}{0.5} = 0.1$		
+			\begin{itemize}
+				\item The claim made by the prosecutor is $p(\texttt{crime\_blood\_type} | \texttt{innocent}) = 0.1$ and $p(\texttt{guilty}) = 0.99$. Thus, $p(\texttt{crime\_blood\_type} | \texttt{innocent}) = 0.1$ might hold true if we make unbiased assumptions, which includes $p(\texttt{guilty}) = 0.5$ and inferring $p(\texttt{guilty})$ would be incorrect.
+			\end{itemize}
+			
+		\item
+			The only evidence available is that 1 in 8000 people would have the crime blood type. This would \textbf{only imply that the defendant has 1 in 8000 chance of having the crime blood type and not 1 in 8000 chance that the defendant is guilty}. The fault of the defender's argument is making an assumption between the dependence between these two random variables.
+			
+	\end{enumerate}

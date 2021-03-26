@@ -1,0 +1,60 @@
+\begin{enumerate}
+	\item We can write $\mu$ in terms of the training data $x = (x_{1}, x_{2}, \cdots, x_{n})$ using Bayes' rule
+
+		\begin{align*}
+		    P(\mu | x) & = \frac{\overbrace{P(x | \mu)}^{\mathcal{N(\mu, \sigma)}}\overbrace{P(\mu)}^{\mathcal{N}(\mu_{0}, \sigma_{0})}}{\underbrace{P(x)}_{constant}} \\
+		    P(x | \mu) & = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^{2}}} \exp\left( - \frac{(x_{i} - \mu)^{2}}{2\sigma^{2}} \right) \\
+		    P(\mu) & = \frac{1}{\sqrt{2\pi\sigma_{0}^{2}}}\exp{ \left( -\frac{(\mu - \mu_{0})^{2}}{2\sigma_{0}^{2}} \right) }
+		\end{align*}
+		Next, taking log on both sides, we get
+		\begin{align*}
+		    \log(P(\mu | x)) & = \left( \sum_{i=1}^{n} -\log \left( \sqrt{2\pi\sigma^{2}} \right) \right) - \log \left( \sqrt{2\pi\sigma_{0}^{2}} \right) - \frac{(\mu - \mu_{0})^{2}}{2\sigma_{0}^{2}}
+		\end{align*}
+		We can take derivative with respect to $\mu$ and equate it to 0.
+
+		\begin{align*}
+		    \frac{\partial\log(P(\mu|x))}{\partial\mu} & = \left( \sum_{i=1}^{n} \frac{x_{i} - \mu}{\sigma^{2}} \right) - \frac{\mu - \mu_{0}}{\sigma_{0}^{2}} = 0 \\
+		    \therefore \mu & = \frac{\sigma^{2}\mu_{0} + \sigma_{0}^{2}\sum_{i=1}^{n}x_{i}}{\sigma^{2} + n\sigma_{0}^{2}}
+		\end{align*}
+		
+	
+	\item Let $\bar{x}$ be sampled from Gaussian distribution $x_{i} \sim \mathcal{N}(\mu, \sigma)$. The likelihood function can be written as
+
+		\begin{align*}
+		    p(\bar{x_{i}} | \mu, \sigma) & = \prod_{i=1}^{n}f(x_{i}; \mu, \sigma) \\
+ 		   & = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi\sigma^{2}}} \exp\left( - \frac{(x_{i} - \mu)^{2}}{2\sigma^{2}} \right) \\    
+		\end{align*}
+
+		Next, taking log on both sides, we get
+
+		\begin{align*}
+		    p(\bar{x_{i}} | \mu, \sigma) & = \sum_{i=1}^{n} \left( - \log{\sqrt{2\pi\sigma^{2}}} - \frac{(x_{i} - \mu)^{2}}{2\sigma^{2}} \right) \\
+		    & = \sum_{i=1}^{n} \left( - \frac{1}{2} \log{2\pi\sigma^{2}} - \frac{1}{2} \frac{(x_{i} - \mu)^{2}}{2\sigma^{2}} \right) \\
+		    & = \frac{n}{2} \log(2\pi\sigma^{2}) + \sum_{i=1}^{n} -\frac{1}{2\sigma^{2}} (x_{i} - \mu)^{2} \\
+		\end{align*}
+
+		To obtain the estimate for $\mu$ we can derivate with respect to $\mu$ and equate it to zero.
+
+		\begin{align*}
+		    & \frac{\partial}{\partial\mu} \left( \frac{n}{2} \log(2\pi\sigma^{2}) + \sum_{i=1}^{n} -\frac{1}{2\sigma^{2}} (x_{i} - \mu)^{2} \right) \\
+		    & = \frac{\partial}{\partial\mu} \left( -\frac{n}{2} \log (2\pi\sigma^{2}) \right) - \frac{\partial}{\partial\mu} \left( \frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (x_{i} - \mu)^{2} \right) \\
+		    & = \frac{\partial}{\partial\mu} \left( - \frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (x_{i} - \mu)^{2} \right) \\
+		    & = - \frac{1}{2\sigma^{2}} \frac{\partial}{\partial\mu} \left( \sum_{i=1}^{n} (x_{i} - \mu)^{2} \right) \\
+		    & = \frac{1}{\sigma^{2}} \sum_{i=1}^{n} (x_{i} - \mu)^{2} = 0 \\
+    \therefore \mu & = \frac{1}{n} \sum_{i=1}^{n} x_{i}
+		\end{align*}
+
+		Next, to obtain the estimate for $\sigma^{2}$, we can follow similar procedure.
+
+		\begin{align*}
+		    & \frac{\partial}{\partial\sigma^{2}} \left( \frac{n}{2} \log(2\pi\sigma^{2}) + \sum_{i=1}^{n} -\frac{1}{2\sigma^{2}} (x_{i} - \mu)^{2} \right) \\
+		    & = \frac{\partial}{\partial\sigma^{2}} \left( -\frac{n}{2} \log (2\pi\sigma^{2}) \right) - \frac{\partial}{\partial\sigma^{2}} \left( \frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (x_{i} - \mu)^{2} \right) \\
+		    & = -\frac{n}{2} \frac{\partial}{\partial\sigma^{2}} (\log(2\pi\sigma^{2})) + \frac{\partial}{\partial\sigma^{2}} \left( -\frac{1}{2\sigma^{2}} \sum_{i=1}^{n} (x_{i} - \mu)^{2} \right) \\
+		    & = -\frac{n}{\sigma^{2}} + \frac{1}{2\sigma^{4}} \sum_{i=1}^{n} (x_{i} - \mu)^{2} \\
+		    & = \frac{1}{2\sigma^{2}} \left( -n + \frac{1}{\sigma^{2}} \sum_{i=1}^{n} (x_{i} - \mu)^{2} \right) \\
+		    \therefore \sigma^{2} & =  \frac{1}{n} \sum_{i=1}^{n}(x_{i} - \mu)^{2}
+		\end{align*}
+
+		Thus, we can show that the likelihood of a Gaussian sample also follows a Gaussian distribution. \href{https://jrmeyer.github.io/machinelearning/2017/08/18/mle.html}{Reference}
+
+\end{enumerate}

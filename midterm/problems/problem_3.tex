@@ -1,0 +1,32 @@
+\begin{enumerate}
+		
+			
+	\item 		
+		\begin{align*}
+			p(z_{ik} = 1 | p(w_{i}) = p(w_{i}) \\
+			p(z_{ik} = 0 | p(w_{i}) = 1 - p(w_{i}) \\	
+			p(z_{ik} | w_{i}) = p(w_{i})^{z_{ik}}(1 - p(w_{i}))^z_{ik} \\			
+		\end{align*}
+		Using the law of independence, we have,
+		\begin{align*}
+			p(z_{ik} | w_{i}) & = p(w_{i})^{z_{ik}}(1 - p(w_{i}))^z_{ik} \\
+			& = \prod_{k=1}^{n} p(z_{ik} | p(w_{i}) \\
+			& = \prod_{k=1}^{n} (p(w_{i})^z_{ik}(1 - p(w_{i}))^{(1 - z_{ik})}
+		\end{align*}
+			
+	\item  From the likelihood function derived above we can take log on both sides and rewrite the equation as
+		\begin{align*}
+			\ln p(w_{i}) &= \ln(\prod_{k=1}^{n} (p(w_{i})^{z_{ik}}(1 - p(w_{i}))^{(1 - z_{ik})}) \\
+			&= \sum_{k=1}^{n} z_{ik}\ln(p(w_{i}) + (1 - z_{ik})\ln(1 - p(w_{i}))
+		\end{align*}
+		Taking derivative with respect to $p(w_{i})$ and equating it to zero, we get
+		\begin{align*}
+			\frac{\partial\ln p(w_{i})}{\partial p(w_{i})} & = \frac{1}{p(w_{i})}\sum_{i=1}^{n}z_{ik} - \frac{1}{1 - p(w_{i})} \sum_{k=1}^{n} (1 - z_{ik}) \\
+			& \frac{1}{p(w_{i})}\sum_{i=1}^{n}z_{ik} - \frac{1}{1 - p(w_{i})} \sum_{k=1}^{n} (1 - z_{ik}) = 0 \\
+			\therefore (1 - p(w_{i}))\sum_{i=1}^{n}z_{ik} & = p(w_{i})\sum_{k=1}^{n} (1 - z_{ik}) \\
+			\sum_{i=1}^{n}z_{ik} & = p(w_{i})\sum_{i=1}^{n}z_{ik} + np(w_{i}) - p(w_{i})\sum_{i=1}^{n}z_{ik} \\
+			\therefore p(w_{i}) &= \frac{1}{n}\sum_{i=1}^{n}z_{ik}
+		\end{align*}
+	
+\end{enumerate}
+

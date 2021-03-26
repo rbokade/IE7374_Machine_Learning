@@ -1,0 +1,18 @@
+\begin{enumerate}
+
+    \item The best decision function can be given by $f^{*}(x) = x$. Thus, the expected loss or "risk" would be 0 $R(f) = \mathbb{E} \ell (f^{*}(x), y) = 0$. 
+
+    \item Approximation function: $R(f_{F}) - R(f^{*})$. The best constant function would be $f(x) = \mathbb{E}[X] = 5.5$. Thus the approximation error would be $\mathbb{E}[(f^{*}(X) - 5.5)^{2}] = \mathbb{E}[(Y - 5.5)^{2}] = Var(Y) = \frac{33}{4} = 8.25$.
+
+    \item 
+    	\begin{enumerate}
+	    	\item Hypothesis space $F$ of affine functions $f(x) = a + bx$. The best estimation function within this hypothesis space would have the risk of 0. And so, the approximation error would also be 0.  \href{https://davidrosenberg.github.io/ml2017/#lectures}{Reference}
+
+		    \item 
+        		\begin{align*}
+		            \hat{f}(x) & = x + 1 \\
+        		    R(\hat{f}) - R(f_{F}) & = \mathbb{E}[(Y - X + 1)^{2}] - 0 = \mathbb{E}[1] = 1
+		        \end{align*}
+		 \end{enumerate}
+
+\end{enumerate}

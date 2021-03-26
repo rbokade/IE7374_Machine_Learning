@@ -1,9 +1,0 @@
-\section{Problem 6}
-
-	Consider a covariance matrix $\Sigma$ for any random variable $X$. A covariance matrix is symmetric by definition. Next. consider a vector $Z \rightarrow (z_{1}, \cdots, z_{n})$ in $n$ space.
-	\begin{align*}
-		Z^{T}\SigmaZ & = Z^{T} \mathbb{E} [ (x - \mathbb{E}[x]) \codot (x - \mathbb{E}[x])^{T} ] \\
-		& = \mathbb{E} [ ((x - \mathbb{E}[x])^{T} \cdot Z)^{T} \codot ((x - \mathbb{E}[x])^{T} \cdot Z) ] \\
-		& = \mathbb{E} [\underbrace{((x - \mathbb{E}[x])^{T} \cdot Z)^{T}}_{\text{Non-negative}}] \geq 0 \\
-	\end{align*}
-	Since, the value of the term within the expectation is non-negative, the expectation must be non-negative. Therefore, $Z^{T}\Sigma Z \geq 0$. Now, if $X$ were to be a Gaussian random variable, we know that the covariance matrix $\Sigma$ must be invertivle and full rank. Also, $Z^{T}\Sigma Z > 0$ and is positive definite.

@@ -1,0 +1,22 @@
+\section{Problem 7}
+
+	\begin{align*}
+		||X^{T}w - y||^{2} = \underbrace{(w - \hat{w})^{T} X^{T}X (w - \hat{w})}_{(x - M^{-1}b)^{T} x^{T}x (x - M^{-1}b)} + ||X^{T}\hat{w} - y||^{2}
+	\end{align*}
+	We can show that $||X^{T}w - y||^{2} - ||X^{T}\hat{w} - y||^{2} = (w - \hat{w})^{T} X^{T}X (w - \hat{w})$ 
+	\par
+	Let $x = w, M = X^{T}X, b = X^{T}y$. Then $(w - \hat{w})^{T} X^{T}X (w - \hat{w})$ can be written as $(x - M^{-1}b)^{T} x^{T}x (x - M^{-1}b)$. Also, we know that \\
+	\begin{align*}
+		(x - M^{-1}b)^{T} x^{T}x (x - M^{-1}b) = x^{T}Mx - 2b^{T}x + b^{T}M^{-1}b \\		
+	\end{align*}
+	Therefore
+	\begin{align*}
+		(w - \hat{w})^{T} X^{T}X (w - \hat{w}) & = w^{T}X^{T}Xw - 2(X^{T}y)^{T}w + (X^{T}y)^{T}(X^{T}X)^{-1}(X^{T}y) \\
+		& = w^{T}X^{T}Xw - 2(X^{T}y)^{T}w + (X^{T}y)^{T}\hat{w}(X^{T}y)^{-1}(X^{T}y)
+	\end{align*}
+	% Next, we need to show that $||X^{T}w - y||^{2} - ||X^{T}\hat{w} - y||^{2}$ can be written as $x^{T}Mx - 2b^{T}x + b^{T}M^{-1}b$. \\
+	Next,
+	\begin{align*}
+		||X^{T}w - y||^{2}- ||X^{T}\hat{w} - y||^{2} & = (X^{T}w)^{T}(X^{T}w) - 2y^{T}(X^{T}w) + y^{T}y - (X^{T}\hat{w})^{T}(X^{T}\hat{w}) + 2y^{T}(X^{T}\hat{w}) - y^{T}y \\
+		& = (X^{T}w)^{T}(X^{T}w) - (X^{T}\hat{w})^{T}(X^{T}\hat{w}) - 2y^{T}(X^{T}w) + 2y^{T}(X^{T}\hat{w})
+	\end{align*}

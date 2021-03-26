@@ -1,0 +1,26 @@
+\begin{enumerate}
+
+
+	\item 
+		\begin{align*}
+    		\hat{\beta} & = arg\min_{\beta} \{ (Y - X\beta)^{T}(Y - X\beta) + \lambda \beta^{T}\beta \} \\
+    		\frac{\partial\hat{\beta}}{\partial\beta} & = \frac{\partial(Y - X\beta)^{T}(Y - X\beta)}{\partial\beta} + \frac{\partial\lambda\beta^{T}\beta}{\partial\beta} \\
+    		& = \frac{Y^{T}Y - 2\beta^{T}X^{T}Y + \beta^{T}X^{T}X\beta}{\partial\beta} + \frac{\lambda\beta^{T}\beta}{\partial\beta} \\
+    		& = -2X^{T}(Y - \beta^{T}X) + 2\lambda\beta \\
+    		\therefore \beta & = (X^{T}X + \lambda \mathbb{I})^{-2}X^{T}Y \\
+    		& = (A^{T}A + \lambda \mathbb{I})^{-2}A^{T}Y
+		\end{align*}
+		\href{https://stats.stackexchange.com/questions/69205/how-to-derive-the-ridge-regression-solution}{Reference}
+		
+					
+	\item First of all, $A^{T}A$ is a symmetric matrix. Let $A^{T}A$ have dimensions $n \times n$. Therefore, for it to be full rank, the rank of the matrix should be $n$. Further, $A^{T}A$ will always be a semi-definite matrix and all of its \textbf{eigen values would be greater than zero} $v \geq 0 \ \forall \ v \in V$. 
+		\par
+		Next, any eigen vector $\textbf{v}_{i}$ of $A^{T}A$ will be the eigen vector of $(A^{T}A + \lambda\mathbb{I})$ scaled as $v_{i} + \lambda$.
+		\begin{align*}
+    		(A^{T}A + \lambda\mathbb{I})\textbf{v}_{i} & = \underbrace{A^{T}A\textbf{v}_{i}}_{A\textbf{v} = u\textbf{v}} + \lambda\mathbb{I} \textbf{v}_{i} \\
+    		& = (v_{i} + \lambda)\textbf{v}_{i} \\
+		\end{align*}
+		Thus, we can show that the eigen values of $(A^{T}A + \lambda\mathbb{I}) \geq0$ and therefore it is full rank and invertible. \href{https://statisticaloddsandends.wordpress.com/2018/01/31/xtx-is-always-positive-semidefinite/}{Reference}
+	
+	
+\end{enumerate}

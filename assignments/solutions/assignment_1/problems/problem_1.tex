@@ -1,0 +1,40 @@
+\section{Problem 1}
+
+	\begin{align*}
+		p(x) & = \begin{cases}
+			\frac{x}{10}, & \text{if } x = 1, 2, 3 \\
+			0, & \text{otherwise}
+		\end{cases}
+	\end{align*}
+	\begin{align*}
+		p(y| x) & = \left( \frac{x + 1}{2x} \right)^{y} \left( 1 - \frac{x + 1}{2x} \right)^{1 - y}
+	\end{align*}
+	where $y \in \{ 0, 1 \}$
+	
+	\begin{enumerate}
+		\item % a
+			\begin{align*}
+				\mathbb{E}(X) & = \sum_{x} xp(x) = \sum_{x = 1}^{4} x\left( \frac{x}{10} \right) = \boxed{3} \\
+				Var(X) & = \mathbb{E}(X^{2}) - \mathbb{E}(X)^{2} = \sum_{x = 1}^{4} x^{2} \left( \frac{x}{10} \right) - 3^{2} = 10 - 9 = \boxed{1}
+			\end{align*}
+		
+		\item % b
+			By using the conditional equality $p(x, y) = p(y | x) p(x)$, we can find
+			\begin{align*}
+				p(x, y) = \left( \frac{x + 1}{2x} \right)^{y} \left( 1 - \frac{x + 1}{2x} \right)^{1 - y} \frac{x}{10}	
+			\end{align*}
+			and the marginal p(y) can be found by summing the joint distribution over the domain of $x$ 
+			\begin{align*}
+					p(y) = \sum_{x}p(x, y) = \sum_{x=1}^{4} \left[ \left( \frac{x + 1}{2x} \right)^{y} \left( 1 - \frac{x + 1}{2x} \right)^{1 - y} \frac{x}{10} \right]
+			\end{align*}
+			Next, exploiting the conditional equality again, we can find $p(x | y)$
+			\begin{align*}
+				 \boxed{p(x | y) = \frac{p(x, y)}{p(y)} = \frac{\left( \frac{x + 1}{2x} \right)^{y} \left( 1 - \frac{x + 1}{2x} \right)^{1 - y} \frac{x}{10}}{\sum_{x=1}^{4} \left[ \left( \frac{x + 1}{2x} \right)^{y} \left( 1 - \frac{x + 1}{2x} \right)^{1 - y} \frac{x}{10} \right]}}
+			\end{align*}
+	
+		\item  % c
+			\begin{align*}
+				\mathbb{E}[X | Y = 1] & = \sum_{x = 1}^{4} x p(x | y = 1) \\
+				& = \sum_{x = 1}^{4} x \left( \frac{\left( \frac{x + 1}{2x} \right) \frac{x}{10}}{\sum_{x=1}^{4} \left[ \left( \frac{x + 1}{2x} \right) \frac{x}{10} \right]} \right) = \frac{20}{7}
+			\end{align*}						
+	\end{enumerate}

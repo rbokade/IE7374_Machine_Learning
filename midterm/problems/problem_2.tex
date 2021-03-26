@@ -1,0 +1,43 @@
+\begin{enumerate}
+	
+	\item 
+	
+		\begin{align*}
+			p(y | x_{1} = 0) = \frac{p(x_{1} = 0 | y)p(y)}{p(x_{1} = 0 )}
+		\end{align*}
+		We know that,		
+		\begin{align*}
+			p(x_{1} = 0 | y = 1) & = 1 - \theta_{1} = 0.5 \\
+			p(x_{1} = 0 | y = 2) & = 1 - \theta_{2} = 0.5 \\
+			p(x_{1} = 0 | y = 3) & = 1 - \theta_{3} = 0.5 \\
+			p(y = 1) = 0.5, p(y = 2) & = p(y = 3) = 0.25 \\
+			p(x_{1} = 0) = \sum_{m=1}^{3}p(x_{1} = 0)p(y=m) & = 0.25 + 0.125 + 0.125 = 0.5 \\
+			p(y = 1 | x_{1} = 0) & = \frac{0.5 \cdot 0.5}{0.5} = 0.5 \\
+		\end{align*}
+		Similarly,
+		\begin{align*}
+			p(y = 2 | x_{1} = 0) = \frac{0.5 \cdot 0.25}{0.25} = 0.25 \\
+			p(y = 3 | x_{1} = 0) = \frac{0.5 \cdot 0.25}{0.25} =  0.25 \\
+		\end{align*}
+		
+	\item 
+		
+		\begin{align*}
+			p(y | x_{2} = 0) = \frac{p(x_{2} = 0 | y)p(y)}{p(x_{2} = 0 )} \\
+			p(x_{2} = 0 | y) = \frac{1}{\sqrt{2\pi\sigma^{2}}}\exp^{-\frac{1}{2\sigma^{2}}(x - \mu)^{2}} = \begin{bmatrix}
+				0.242 \\ 0.399 \\ 0.242
+			\end{bmatrix} \\
+			p(x_{2} = 0) = \sum_{m=1}^{3}p(x_{2} = 0)p(y=m) = 0.2815
+		\end{align*}
+		Therefore,
+		\begin{align*}
+			p(y = 1 | x_{2} = 0) & = \frac{0.242 \cdot 0.5}{0.2815} = 0.43 \\
+			p(y = 2 | x_{2} = 0) & = \frac{0.399 \cdot 0.5}{0.2815} = 0.354 \\
+			p(y = 3 | x_{2} = 0) & = \frac{0.242 \cdot 0.5}{0.2815} = 0.215 \\
+		\end{align*}
+	
+	\item $p(y = 2 | x_{1})  = p(y = 3 | x_{1})$. Probability of classifying y as 2 or 3, given $x_{1}$, are equal .
+	
+
+\end{enumerate}
+
