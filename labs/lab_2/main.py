@@ -2,21 +2,43 @@ import logging
 
 import numpy as np
 
-from data_loader import DataLoader
-from k_fold_cv import KFoldCrossValidation
-from multi_linear_regression import MultiLinearRegression
+from utils.data_loader import DataLoader
+from utils.metrics import sum_of_squared_error
+from utils.misc import compute_correlation_matrix
+from learners.linear_regression import LinearRegression
+from utils.k_fold_cross_validation import KFoldCrossValidation
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("Lab-2")
 
-
-DATA_DIR = "datasets/Lab2.csv"
+K = 10
 REPLICATES = 20
+DATA_DIR = "datasets/Lab2.csv"
+LOG_FILE = "results/lab_2_results.log"
 
-def compute_sse(y_pred, y):
-    y = np.array(y)
-    y_prep = np.array(y_pred)
-    return sum((y - y_pred) ** 2)
+logging.basicConfig(
+    filename=LOG_FILE, filemode="w",
+    format="%(levelname)-4s [%(filename)s:%(lineno)d] %(message)s",  # noqa
+    datefmt="%H:%M:%S", level=logging.INFO
+)
+
+
+def perform_k_fold_cross_validation_with_regression(
+    X, y, exp_name, model, performance_metric=sum_of_squared_error,
+    k=10, replicates=20
+):
+
+    kfcv = KFoldCrossValidation(X=X, y=y, k=k)
+    logging.info(f"Model: {exp_name}")
+    scores = []
+    for seed in range(replicates):
+        performance = kfcv.get_cv_performance(
+            model=model, performance_eval_func=performance_metric, seed=seed
+        )
+        scores.append(performance)
+    mean_score = np.mean(scores)
+    std_score = np.std(scores)
+    logging.info(f"Mean CV {performance_metric.__name__} across {replicates} replicates: {mean_score}")  # noqa
+    logging.info(f"STD of CV {performance_metric.__name__} across {replicates} replicates: {std_score}")  # noqa
+    logging.info("\n")
 
 
 if __name__ == "__main__":
@@ -26,57 +48,28 @@ if __name__ == "__main__":
     loader.load_data()
     norm_data, means, stds = loader.normalize_data(loader.data)  # normalize
 
+    # Get correlation matrix
+    correlation_matrix = loader.data.corr().round(2)
+    logging.info(f"Correlation matrix: {correlation_matrix}")
+
     # Model
-    mlr_normal = MultiLinearRegression()
+    linear_regression = LinearRegression(risk_function=sum_of_squared_error)
 
     # 8-predictor model
+    X_eight = norm_data[["x1", "x2", "x3", "x4",
+                         "x5", "x6", "x7", "x8"]].to_numpy()
+    y_eight = norm_data["y"].to_numpy()
     #   CV
-    cv_eight = KFoldCrossValidation(
-        X=norm_data[["x1", "x2", "x3", "x4", "x5", "x6", "x7", "x8"]].to_numpy(),
-        y=norm_data["y"].to_numpy(), k=10
+    perform_k_fold_cross_validation_with_regression(
+        X_eight, y_eight, "8-Predictor Model", linear_regression,
+        k=K, replicates=REPLICATES
     )
-    logger.info("Model: 8-predictor")
-    #   Repeat experiment 20 times
-    cv_eight_scores = []
-    for seed in range(REPLICATES):
-        performance = cv_eight.get_cv_performance(
-            model=mlr_normal,
-            performance_eval_func=compute_sse,
-            seed=seed
-        )
-        cv_eight_scores.append(performance)
-    mean_cv_eight_score = np.mean(cv_eight_scores)
-    std_cv_eight_score = np.std(cv_eight_scores)
-    logger.info(
-        f"Mean CV score across {REPLICATES} replicates: {mean_cv_eight_score}"
-    )
-    logger.info(
-        f"STD of CV score across {REPLICATES} replicates: {std_cv_eight_score}"
-    )
-
-    logger.info("\n\n")
 
     # 2-predictor model
+    X_two = norm_data[["x1", "x2"]].to_numpy()
+    y_two = norm_data["y"].to_numpy()
     #   CV
-    cv_two = KFoldCrossValidation(
-        X=norm_data[["x1", "x2"]].to_numpy(),
-        y=norm_data["y"].to_numpy(), k=10
-    )
-    logger.info("Model: 2-predictor")
-    #   Repeat experiment 20 times
-    cv_two_scores = []
-    for seed in range(REPLICATES):
-        performance = cv_two.get_cv_performance(
-            model=mlr_normal,
-            performance_eval_func=compute_sse,
-            seed=seed
-        )
-        cv_two_scores.append(performance)
-    mean_cv_two_score = np.mean(cv_two_scores)
-    std_cv_two_score = np.std(cv_two_scores)
-    logger.info(
-        f"Mean CV score across {REPLICATES} replicates: {mean_cv_two_score}"
-    )
-    logger.info(
-        f"STD of CV score across {REPLICATES} replicates: {std_cv_two_score}"
+    perform_k_fold_cross_validation_with_regression(
+        X_two, y_two, "2-Predictor Model", linear_regression,
+        k=K, replicates=REPLICATES
     )
