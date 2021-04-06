@@ -1,0 +1,14 @@
+\begin{enumerate}
+
+	\item 
+		Class-conditional probability for each class $i \in \{0, 1\}$ is given as 
+		$$p(x | y = i) = \frac{1}{(2\pi)^{d / 2} |\Sigma_{i}|^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - m_{i})^{T} \Sigma_{i}^{-1} (x - m_{i}) \right]}$$
+		where $m_{0} = (1, 2), m_{1} = (6, 3), \Sigma_{0} = \Sigma_{1} = \mathbb{I}_{2}$ and $P(Y= 0) = P(Y = 1) = 1 / 2$. Also, point $x$ is said to be on the decision surface or boundary if $P(Y = 1 | x) = P(Y = 0 | x)$. 
+		
+		We can use Bayes' theorem to obtain the posterior $p(y | x) = \frac{p(x | y)p(y)}{p(x)}$ for both the classes and equate them to find the optimal decision boundary.
+		\begin{align*}
+			\frac{p(x | y = 0)p(y = 0)}{p(x)} & = \frac{p(x | y = 1)p(y = 1)}{p(x)} \\			\therefore p(x | y = 0)p(y = 0) & = p(x | y = 1)p(y = 1) \\
+			
+		\end{align*} 
+
+\end{enumerate}
