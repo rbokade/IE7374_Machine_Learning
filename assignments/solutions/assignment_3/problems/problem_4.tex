@@ -1,0 +1,12 @@
+$$J(w) = \| Xw - y \| + \lambda\|w\|_{2}^{2}$$
+We have positive semidefinite kernel $k$
+
+\begin{enumerate}
+                        
+    \item 
+         The kernelized version of the objective for a given kernel $k_{ij} = k(x_{i}, x_{j})$ can be given as $$J(\alpha) = \| k\alpha - y \| + \lambda\alpha^{T}k\alpha$$
+    
+    \item
+        The prediction using a new point $x^{*}$ can be given as $$f_{\alpha}(x^{*}) = \sum_{i=1}^{n} \alpha_{i}k(x_{i}, x)$$
+    
+\end{enumerate}

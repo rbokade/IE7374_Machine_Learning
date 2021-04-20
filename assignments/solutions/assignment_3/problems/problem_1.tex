@@ -6,9 +6,46 @@
 		where $m_{0} = (1, 2), m_{1} = (6, 3), \Sigma_{0} = \Sigma_{1} = \mathbb{I}_{2}$ and $P(Y= 0) = P(Y = 1) = 1 / 2$. Also, point $x$ is said to be on the decision surface or boundary if $P(Y = 1 | x) = P(Y = 0 | x)$. 
 		
 		We can use Bayes' theorem to obtain the posterior $p(y | x) = \frac{p(x | y)p(y)}{p(x)}$ for both the classes and equate them to find the optimal decision boundary.
+
+        \begin{align*}
+            \frac{p(x | y = 0)p(y = 0)}{p(x)} & = \frac{p(x | y = 1)p(y = 1)}{p(x)} \\			
+			\therefore p(x | y = 0)p(y = 0) & = p(x | y = 1)p(y = 1) \\
+			\therefore p(x | y = 0)(0.5) & = p(x | y = 1)(0.5) \\
+			\therefore p(x | y = 0) & = p(x | y = 1) \\					
+        \end{align*}
+
+        \begin{multline*}
+            \therefore \frac{1}{(2\pi)^{d / 2} |\Sigma_{0}|^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - m_{0})^{T} \Sigma_{0}^{-1} (x - m_{0}) \right]} \\ = \frac{1}{(2\pi)^{d / 2} |\Sigma_{1}|^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - m_{1})^{T} \Sigma_{1}^{-1} (x - m_{1}) \right]}
+        \end{multline*}
+        
+		\begin{multline*}
+		    \therefore \frac{1}{(2\pi)^{2 / 2} (1)^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - (1, 2))^{T} \begin{pmatrix} 1, 0 \\ 0, 1 \end{pmatrix}^{-1} (x - (1, 2)) \right]} \\ = \frac{1}{(2\pi)^{2 / 2} 1^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - (6, 3))^{T} \begin{pmatrix} 1, 0 \\ 0, 1 \end{pmatrix}^{-1} (x - (6, 3)) \right]} \\
+		\end{multline*}
+    		
 		\begin{align*}
-			\frac{p(x | y = 0)p(y = 0)}{p(x)} & = \frac{p(x | y = 1)p(y = 1)}{p(x)} \\			\therefore p(x | y = 0)p(y = 0) & = p(x | y = 1)p(y = 1) \\
-			
-		\end{align*} 
+    		\therefore (x_{1} - 1, x_{2} - 2)^{T} \begin{pmatrix} 1, 0 \\ 0, 1 \end{pmatrix} (x_{1} - 1, x_{2} - 2) & = (x_{1} - 6, x_{2} - 3)^{T} \begin{pmatrix} 1, 0 \\ 0, 1 \end{pmatrix} (x_{1} - 6, x_{2} - 3) \\
+		    \therefore (x_{1} - 1)^{2} + (x_{2} - 2)^{2} & = (x_{1} - 6)^{2} + (x_{2} - 3)^{2} \\
+		    \therefore (x_{1} - 1)^{2} -  (x_{1} - 6)^{2} + (x_{2} - 2)^{2} - (x_{2} - 3)^{2} & = 0 \\		    
+		\end{align*}	
+		
+		\begin{align*}
+		    \therefore (x_{1}^{2} - 2x_{1} + 1 - x_{1}^{2} + 12x_{1} - 36) + (x_{2}^{2} - 4x_{2} + 4 - x_{2}^{2} + 6x_{2} - 9) & = 0 \\
+		    \therefore 10x_{1} - 35 + 2x_{2} - 5 & = 0 \\
+		    \therefore 10x_{1} + 2x_{2} - 40 & = 0 \\
+		    \therefore 5x_{1} + x_{2} & = 20 \\
+		\end{align*}
+	
+	\item
+       \begin{multline*}
+            \therefore \frac{1}{(2\pi)^{d / 2} |\Sigma_{0}|^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - m_{0})^{T} \Sigma_{0}^{-1} (x - m_{0}) \right]} \\ = \frac{1}{(2\pi)^{d / 2} |\Sigma_{1}|^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - m_{1})^{T} \Sigma_{1}^{-1} (x - m_{1}) \right]}
+        \end{multline*}
+        
+       \begin{align*}
+            \therefore \frac{1}{|\Sigma_{0}|^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - m_{0})^{T} \Sigma_{0}^{-1} (x - m_{0}) \right]} & = \frac{1}{|\Sigma_{1}|^{1 / 2} } \exp{\left[ -\frac{1}{2}(x - m_{1})^{T} \Sigma_{1}^{-1} (x - m_{1}) \right]} \\
+            \therefore \log \left( \frac{1}{|\Sigma_{0}|^{1 / 2}} \right) - \frac{1}{2}(x - m_{0})^{T} \Sigma_{0}^{-1} (x - m_{0}) & = \log \left( \frac{1}{|\Sigma_{1}|^{1 / 2}} \right) -\frac{1}{2}(x - m_{1})^{T} \Sigma_{1}^{-1} (x - m_{1}) \\
+            \therefore \log \left( \frac{1}{|\Sigma_{0}|^{1 / 2}} \right) - \frac{1}{2}(x - m_{0})^{T} \Sigma_{0}^{-1} (x - m_{0}) & - \log \left( \frac{1}{|\Sigma_{1}|^{1 / 2}} \right) + \frac{1}{2}(x - m_{1})^{T} \Sigma_{1}^{-1} (x - m_{1})  = 0\\
+        \end{align*}        
+		
+		If $\Sigma_{0} = \Sigma_{1}$, the decision boundary would be linear.
 
 \end{enumerate}
