@@ -1,5 +1,9 @@
-
 \begin{enumerate}
                         
-    
+	\item In boosting, weak learners are stumps which use only one variable to make prediction. The total number of weak learners can be (\# of classes) $\times$ (\# of data points) = $2m$.
+	
+	\item Yes, AdaBoost can select a weak classifier more than once. In AdaBoost, the previous error is the only criterion for improvement. This can cause the algorithm to revisit a weak learner after it's discarded.
+	
+	\item Mutual Information measures the amount of reduction in uncertainty (in one variable) given the information about the second variable. In this case the $\hat{I}(y; X_{j})$ measures the reduction in entropy of $y$ given the information about the variable $X_{j}$. Now, AdaBoost would return a ranking of $X_{j}$ based on how much it is contributing towards the information gain of $y$ \textit{with respect to the other variables} $X_{i} \forall i \in \{ 1, \cdots, k \}$ and $i \neq j$. This makes AdaBoost more informative than mutual information since the ranking is subject to the contribution made by other variables.
+	    		                            
 \end{enumerate}

@@ -1,5 +1,71 @@
-\begin{enumerate}
 
+\textbf{Data:}
 	
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{||c c c c c||} 		
+		 \hline
+		 $a_{1}$ & $a_{2}$ & $a_{3}$ & $a_{4}$  & C \\ [0.5ex] 
+		 \hline \hline
+		 1 & 1 & 0 & 0 & $\omega_{1}$ \\
+		 \hline
+		 0 & 0 & 0 & 0 & $\omega_{1}$ \\
+		 \hline
+		 1 & 0 & 1 & 0 & $\omega_{1}$ \\
+		 \hline
+		 0 & 0 & 1 & 1 & $\omega_{1}$ \\
+		 \hline
+		 1 & 1 & 0 & 0 & $\omega_{2}$ \\
+		 \hline
+		 1 & 1 & 1 & 1 & $\omega_{2}$ \\
+		 \hline
+		 1 & 1 & 1 & 0 & $\omega_{2}$ \\
+		 \hline
+		 0 & 1 & 1 & 1 & $\omega_{2}$ \\
+		 \hline
+	\end{tabular}	
+\end{table}		
 
-\end{enumerate}
+Entropy of $y$: 
+
+\begin{align*}
+	H(x) & = -\sum_{i}^{n} p(x_{i})\log_{2}p(x_{i}) \\
+	H(C) & = -\sum_{i=1}^{k} P(c_{i} | D) \log_{2}P(c_{i} | D) \\
+	& = - [\frac{4}{8} \log_{2}{\frac{4}{8}} + \frac{4}{8} \log_{2}{\frac{4}{8}}] \\
+	& = 1 && \text{(Since both classes are equally represented (max entropy))} \\
+\end{align*}
+
+\begin{align*}
+	H(a_{1}^{\omega_{1}}) & = 1 \\ 
+	H(a_{1}^{\omega_{2}}) & = - [\frac{3}{4}\log_{2}\frac{3}{4} + \frac{1}{4}\log_{2}\frac{1}{4}] = 0.81 \\		
+	H(a_{1}^{\omega_{1}}, a_{1}^{\omega_{2}}) & = \frac{4}{8}(1) + \frac{4}{8}(0.81) = 0.905 \\
+	\text{Gain}(C, a_{1}^{\omega_{1}}, a_{1}^{\omega_{2}}) & = H(C) - H(a_{1}^{\omega_{1}}, a_{1}^{\omega_{2}}) = 1 - 0.905 = 0.095 \\		
+\end{align*}
+
+\begin{align*}
+	H(a_{2}^{\omega_{1}}) & =  - [\frac{1}{4}\log_{2}\frac{1}{4} + \frac{3}{4}\log_{2}\frac{3}{4}] = 0.81 \\ 
+	H(a_{2}^{\omega_{2}}) & = - [\frac{4}{4}\log_{2}\frac{4}{4} + 0] = 0 \\		
+	H(a_{2}^{\omega_{1}}, a_{1}^{\omega_{2}}) & = \frac{4}{8}(0.81) + \frac{4}{8}(0.0) = 0.405 \\
+	\text{Gain}(C, a_{2}^{\omega_{1}}, a_{2}^{\omega_{2}}) & = H(C) - H(a_{1}^{\omega_{1}}, a_{1}^{\omega_{2}}) = 1 - 0.405 = 0.595 \\		
+\end{align*}
+
+\begin{align*}
+	H(a_{3}^{\omega_{1}}) & =  - [\frac{2}{4}\log_{2}\frac{2}{4} + \frac{2}{4}\log_{2}\frac{2}{4}] = 1 \\ 
+	H(a_{3}^{\omega_{2}}) & = - [\frac{1}{4}\log_{2}\frac{1}{4} + \frac{3}{4}\log_{2}\frac{3}{4}] = 0.81 \\		
+	H(a_{3}^{\omega_{1}}, a_{1}^{\omega_{2}}) & = \frac{4}{8}(1) + \frac{4}{8}(0.81) = 0.905 \\
+	\text{Gain}(C, a_{3}^{\omega_{1}}, a_{3}^{\omega_{2}}) & = H(C) - H(a_{1}^{\omega_{1}}, a_{1}^{\omega_{2}}) = 1 - 0.905 = 0.095 \\		
+\end{align*}		
+
+\begin{align*}
+	H(a_{4}^{\omega_{1}}) & =  - [\frac{3}{4}\log_{2}\frac{3}{4} + \frac{1}{4}\log_{2}\frac{1}{4}] = 0.81 \\ 
+	H(a_{4}^{\omega_{2}}) & = - [\frac{2}{4}\log_{2}\frac{2}{4} + \frac{2}{4}\log_{2}\frac{2}{4}] = 1 \\		
+	H(a_{4}^{\omega_{1}}, a_{1}^{\omega_{2}}) & = \frac{4}{8}(0.81) + \frac{4}{8}(1) = 0.905 \\
+	\text{Gain}(C, a_{4}^{\omega_{1}}, a_{4}^{\omega_{2}}) & = H(C) - H(a_{1}^{\omega_{1}}, a_{1}^{\omega_{2}}) = 1 - 0.905 = 0.095 \\		
+\end{align*}		
+
+The attribute $a_{2}$ has the maximum information gain. Hence, we would select $a_{2}$ to be the root node.
+	
+\newpage
+
+
+
